@@ -2,4 +2,8 @@
 # ContainerMostWater - DONE
 # LongestSubString - DONE
 # ReverseInteger - DONE
-# Turing1 - INPROGRESS
+# Turing1 - DONE
+# 4Sum
+
+
+
