@@ -6,31 +6,28 @@
 
 # 4Sum - DONE
 # IntToRoman - DONE
-# MedianTwoSortedArrays -
+# MedianTwoSortedArrays - DONE
+# ReverseLetterOnly -
 
 
-def solution(num):
+def solution(nums1, nums2):
     
-    normal = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1]
-    roman = ["M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"]    
-    i = 0 
-    result = ""
+    merge_nums = nums1 + nums2
+    merge_nums.sort()
     
-    while num > 0 :
-        if num >= normal[i] :
-            result += roman[i]
-            num -= normal[i]
-        else :
-            i += 1
+    if len(merge_nums) % 2 == 1:
+        result = merge_nums[len(merge_nums) // 2]
+    else :
+        result1 = merge_nums[(len(merge_nums) // 2) - 1]
+        result2 = merge_nums[(len(merge_nums) // 2)]
+        result = (result1 + result2) / 2
         
     return result
 
 
-# input
-k = 2549
+# Main Program
+nums1 = [1,3,4]
+nums2 = [2]
 
-# output
-result = solution(k)
-
-# print result
-print("Hasil   :", result)
+result = solution(nums1,nums2)
+print("Hasil : ",result)
