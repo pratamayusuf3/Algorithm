@@ -7,27 +7,42 @@
 # 4Sum - DONE
 # IntToRoman - DONE
 # MedianTwoSortedArrays - DONE
-# ReverseLetterOnly -
+# ReverseLetterOnly - DONE
+# Turing2 - DONE
+
+# AddLinkedList - 
 
 
-def solution(nums1, nums2):
+def main():
+    # Input
+    k = [1,2,2,1,5,3,4,3,4]
     
-    merge_nums = nums1 + nums2
-    merge_nums.sort()
+    result = 0
     
-    if len(merge_nums) % 2 == 1:
-        result = merge_nums[len(merge_nums) // 2]
-    else :
-        result1 = merge_nums[(len(merge_nums) // 2) - 1]
-        result2 = merge_nums[(len(merge_nums) // 2)]
-        result = (result1 + result2) / 2
+    # Fungsi Hasil
+    result =  solution(k)
+    
+    # Print result
+    print("Hasil : ", result)
+    
+    
+def solution(k):
+    
+    if len(k) < 3 :
+        return -1
+    
+    k.sort()
+    
+    for i in range (0, len(k), 2):
         
-    return result
+        if i == (len(k) - 1) :
+            return k[i]
+        
+        elif k[i] != k[i+1]:
+            return k[i]
+    
+    return -1
 
 
-# Main Program
-nums1 = [1,3,4]
-nums2 = [2]
-
-result = solution(nums1,nums2)
-print("Hasil : ",result)
+if __name__ == "__main__":
+    main()
