@@ -13,27 +13,29 @@
 # AddLinkedList - DONE
 # LetterComboOfPhone - DONE
 # PalindromeNumber - DONE
-# RomanToInt -
+# RomanToInt - DONE
+# Turing3
 
 
-
-def solution(x):
-    num_str = str(x)
-    left = 0
-    right = len(num_str) - 1
+def solution(k):
+    # Peta karakter Romawi ke nilai Integer
+    roman_to_int = {'I':1, 'V':5, 'X':10, 'L':50, 'C':100, 'D':500, 'M':1000 }
+    total = 0
     
-    while left < right :
-        if num_str[left] != num_str[right]:
-            return False
-        left += 1
-        right -= 1
-    return True
+    for i in range (len(k)) :
+        if i < len(k) - 1 and roman_to_int[k[i]] < roman_to_int[k[i+1]] :
+            total -= roman_to_int[k[i]]
+        else :
+            total += roman_to_int[k[i]]
+            
+    return total
 
-# Input
-x = 1223221
 
-# Output
-result = solution(x)
+# Input 
+k = "MMDXLIX"
 
-# Print Result
-print("Hasil : ", result)
+# Fungsi Hasil
+result = solution(k)
+
+# Output Hasil
+print("Hasil : ",result)
