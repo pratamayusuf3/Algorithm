@@ -14,28 +14,36 @@
 # LetterComboOfPhone - DONE
 # PalindromeNumber - DONE
 # RomanToInt - DONE
-# Turing3
+# Turing3 - DONE
+
+# BalanceDigit -
 
 
 def solution(k):
-    # Peta karakter Romawi ke nilai Integer
-    roman_to_int = {'I':1, 'V':5, 'X':10, 'L':50, 'C':100, 'D':500, 'M':1000 }
+    # jumlah total selisih absolut antara digit angka-angka pada semua pasangan elemen array
+    
     total = 0
     
-    for i in range (len(k)) :
-        if i < len(k) - 1 and roman_to_int[k[i]] < roman_to_int[k[i+1]] :
-            total -= roman_to_int[k[i]]
-        else :
-            total += roman_to_int[k[i]]
+    for i in range (len(k)-1) :
+        for j in range (i+1, len(k),1):
+            temp1 = k[i]
+            temp2 = k[j]
             
+            while temp1 > 0 and temp2 > 0 :
+                digit1 = temp1 % 10
+                digit2 = temp2 % 10
+                total += abs(digit1 - digit2)
+                temp1 = temp1 // 10
+                temp2 = temp2 // 10
+                
     return total
+            
 
+# Input
+k = [23, 13, 14]
 
-# Input 
-k = "MMDXLIX"
-
-# Fungsi Hasil
+# Output 
 result = solution(k)
 
-# Output Hasil
+# Print result
 print("Hasil : ",result)
