@@ -4,7 +4,6 @@ def main():
     s = "ab"
     p = ".*"
     
-    
     # Fungsi Hasil
     result = solution(s,p)
     

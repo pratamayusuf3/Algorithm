@@ -16,34 +16,41 @@
 # RomanToInt - DONE
 # Turing3 - DONE
 
-# BalanceDigit -
+# BalanceDigit - DONE
+# LongestComPrefix - DONE
+# RegexMatch - DONE
+# StrToInt -
 
 
-def solution(k):
-    # jumlah total selisih absolut antara digit angka-angka pada semua pasangan elemen array
+
+def main():
     
-    total = 0
+    # Input
+    s = "ab"
+    p = ".*"
     
-    for i in range (len(k)-1) :
-        for j in range (i+1, len(k),1):
-            temp1 = k[i]
-            temp2 = k[j]
-            
-            while temp1 > 0 and temp2 > 0 :
-                digit1 = temp1 % 10
-                digit2 = temp2 % 10
-                total += abs(digit1 - digit2)
-                temp1 = temp1 // 10
-                temp2 = temp2 // 10
-                
-    return total
-            
+    # Fungsi Hasil
+    result = solution(s,p)
+    
+    # Print Result
+    print("Hasil : ", result)
+    
 
-# Input
-k = [23, 13, 14]
+def solution(s,p):    
+    return match_helper(s,p,0,0)
 
-# Output 
-result = solution(k)
-
-# Print result
-print("Hasil : ",result)
+def match_helper(s,p,i,j):
+    if j == len(p):
+        return i == len(s)
+    
+    match = i < len(s) and (s[i] == p[j] or p[j] == '.')
+    
+    if j+1 < len(p) and p[j+1] == '*':
+        return match_helper(s,p,i,j+2) or (match and match_helper(s,p,i+1,j))
+    else:
+        return match and match_helper(s,p,i+1,j+1)
+        
+    
+# Menjalankan fungsi utama 
+if __name__ == "__main__":
+    main()
