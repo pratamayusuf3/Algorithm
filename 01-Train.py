@@ -19,38 +19,42 @@
 # BalanceDigit - DONE
 # LongestComPrefix - DONE
 # RegexMatch - DONE
-# StrToInt -
+# StrToInt - DONE
+# TwoSum - DONE
+
+# BinaryDepth -
 
 
 
-def main():
-    
-    # Input
-    s = "ab"
-    p = ".*"
-    
-    # Fungsi Hasil
-    result = solution(s,p)
-    
-    # Print Result
-    print("Hasil : ", result)
+
     
 
-def solution(s,p):    
-    return match_helper(s,p,0,0)
-
-def match_helper(s,p,i,j):
-    if j == len(p):
-        return i == len(s)
+def solution(nums, target):
     
-    match = i < len(s) and (s[i] == p[j] or p[j] == '.')
+    i = 0    
+    repo = {}
     
-    if j+1 < len(p) and p[j+1] == '*':
-        return match_helper(s,p,i,j+2) or (match and match_helper(s,p,i+1,j))
-    else:
-        return match and match_helper(s,p,i+1,j+1)
+    while i < len(nums):
+        diff = target - nums[i]
         
+        if diff in repo:
+            return [repo[diff], i]
+        
+        repo[nums[i]] = i
+        
+        i += 1
     
-# Menjalankan fungsi utama 
-if __name__ == "__main__":
-    main()
+    return []
+    
+
+# Input data test
+nums = [3, 2, 4]
+target = 6
+
+# Memanggil fungsi two_sum
+result = solution(nums, target)
+
+if len(result) == 2:
+    print("Posisi : ", result[0], result[1])
+else:
+    print("Tidak ada pasangan yang sesuai")
