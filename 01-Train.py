@@ -22,39 +22,43 @@
 # StrToInt - DONE
 # TwoSum - DONE
 
-# BinaryDepth -
+# BinaryDepth - DONE
+# LongestPalindromSubstring -
 
 
 
 
     
 
-def solution(nums, target):
+def solution(k):
     
-    i = 0    
-    repo = {}
+    if len(k) == 0 or k[0] is None:
+        return 0
     
-    while i < len(nums):
-        diff = target - nums[i]
+    depth = 0
+    queue = [0]
+    
+    while queue:
+        current_size = len(queue)
+        depth += 1
         
-        if diff in repo:
-            return [repo[diff], i]
-        
-        repo[nums[i]] = i
-        
-        i += 1
+        for i in range (current_size):
+            index = queue.pop(0)
+            
+            left_idx = (2 * index) + 1
+            if left_idx < len(k) and k[left_idx] is not None:
+                queue.append(left_idx)
+                
+            right_idx = (2 * index) + 2
+            if right_idx < len(k) and k[right_idx] is not None:
+                queue.append(right_idx)
+            
+    return depth
     
-    return []
-    
 
-# Input data test
-nums = [3, 2, 4]
-target = 6
+# input
+k = ["1", "9", "29", None, None, "15", "7"]
 
-# Memanggil fungsi two_sum
-result = solution(nums, target)
-
-if len(result) == 2:
-    print("Posisi : ", result[0], result[1])
-else:
-    print("Tidak ada pasangan yang sesuai")
+# output
+result = solution(k)
+print("Hasil : ", result)
