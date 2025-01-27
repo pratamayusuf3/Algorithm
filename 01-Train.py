@@ -4,7 +4,7 @@
 # ReverseInteger - DONE
 # Turing1 - DONE
 
-# 4Sum - DONE
+# 4Sum - 
 # IntToRoman - DONE
 # MedianTwoSortedArrays - DONE
 # ReverseLetterOnly - DONE
@@ -23,42 +23,37 @@
 # TwoSum - DONE
 
 # BinaryDepth - DONE
-# LongestPalindromSubstring -
+# LongestPalindromSubstring - DONE
+# RemoveNthNode -
+# ThreeSum - DONE
+# ZigZag - DONE
 
 
-
-
+def threeSumClosest(nums, target):
     
+    nums.sort()
+    closest_sum = float('infinity')
+    
+    for i in range (len(nums) - 2):
+        left = i + 1
+        right = len(nums) - 1
+        while left < right:
+            current_sum = nums[i] + nums[left] + nums[right]
+            if abs(current_sum - target) < abs(closest_sum - target):
+                closest_sum = current_sum
+            if current_sum < target:
+                left += 1
+            elif current_sum > target:
+                right -= 1
+            else:
+                return current_sum
+    return closest_sum
 
-def solution(k):
-    
-    if len(k) == 0 or k[0] is None:
-        return 0
-    
-    depth = 0
-    queue = [0]
-    
-    while queue:
-        current_size = len(queue)
-        depth += 1
-        
-        for i in range (current_size):
-            index = queue.pop(0)
-            
-            left_idx = (2 * index) + 1
-            if left_idx < len(k) and k[left_idx] is not None:
-                queue.append(left_idx)
-                
-            right_idx = (2 * index) + 2
-            if right_idx < len(k) and k[right_idx] is not None:
-                queue.append(right_idx)
-            
-    return depth
-    
 
-# input
-k = ["1", "9", "29", None, None, "15", "7"]
-
-# output
-result = solution(k)
-print("Hasil : ", result)
+if __name__ == "__main__":
+    nums = [-1,2,1,-4]
+    target = 1
+    
+    result = threeSumClosest(nums, target)
+    
+    print("Hasil : ", result)
