@@ -1,10 +1,10 @@
 # 3SumClosest - DONE
 # ContainerMostWater - DONE
-# LongestSubString - DONE
+# LongestSubString - 
 # ReverseInteger - DONE
 # Turing1 - DONE
 
-# 4Sum - 
+# 4Sum - DONE
 # IntToRoman - DONE
 # MedianTwoSortedArrays - DONE
 # ReverseLetterOnly - DONE
@@ -29,31 +29,26 @@
 # ZigZag - DONE
 
 
-def threeSumClosest(nums, target):
-    
-    nums.sort()
-    closest_sum = float('infinity')
-    
-    for i in range (len(nums) - 2):
-        left = i + 1
-        right = len(nums) - 1
-        while left < right:
-            current_sum = nums[i] + nums[left] + nums[right]
-            if abs(current_sum - target) < abs(closest_sum - target):
-                closest_sum = current_sum
-            if current_sum < target:
-                left += 1
-            elif current_sum > target:
-                right -= 1
-            else:
-                return current_sum
-    return closest_sum
 
+def solution(height):
+    left = 0
+    right = len(height) - 1
+    max_cal = 0
+    
+    while left < right:
+        cur_cal = (right - left) * min(height[left], height[right])
+        max_cal = max(cur_cal,max_cal) 
+        
+        if height[left] < height[right]:
+            left += 1
+        else :
+            right -= 1
+            
+    return max_cal
 
-if __name__ == "__main__":
-    nums = [-1,2,1,-4]
-    target = 1
-    
-    result = threeSumClosest(nums, target)
-    
-    print("Hasil : ", result)
+# input
+height = [1, 8, 6, 2, 5, 4, 8, 3, 7]
+
+# output 
+result = solution(height)
+print("Hasil : ",result)
