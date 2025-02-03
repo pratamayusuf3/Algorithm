@@ -1,7 +1,7 @@
 # 3SumClosest - DONE
 # ContainerMostWater - DONE
-# LongestSubString - 
-# ReverseInteger - DONE
+# LongestSubString - DONE
+# ReverseInteger - 
 # Turing1 - DONE
 
 # 4Sum - DONE
@@ -30,25 +30,27 @@
 
 
 
-def solution(height):
+def solution(s):
     left = 0
-    right = len(height) - 1
-    max_cal = 0
+    set_sub = set()
+    max_sub = 0
     
-    while left < right:
-        cur_cal = (right - left) * min(height[left], height[right])
-        max_cal = max(cur_cal,max_cal) 
-        
-        if height[left] < height[right]:
-            left += 1
-        else :
-            right -= 1
+    
+    for right in range (len(s)):
+        if s[right] not in set_sub:
+            set_sub.add(s[right])
+            max_sub = max(max_sub,right - left + 1)
+        else:
+            while s[right] in set_sub:
+                set_sub.remove(s[left])
+                left += 1
+    return max_sub
             
-    return max_cal
 
-# input
-height = [1, 8, 6, 2, 5, 4, 8, 3, 7]
 
-# output 
-result = solution(height)
-print("Hasil : ",result)
+# Test Case
+test_str = "abcbcbb"
+result = solution(test_str)
+
+# Menampilkan Hasil
+print("Hasil : ", result)
