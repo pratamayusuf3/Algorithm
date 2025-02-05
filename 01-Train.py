@@ -1,10 +1,10 @@
 # 3SumClosest - DONE
 # ContainerMostWater - DONE
 # LongestSubString - DONE
-# ReverseInteger - 
+# ReverseInteger - DONE
 # Turing1 - DONE
 
-# 4Sum - DONE
+# 4Sum - 
 # IntToRoman - DONE
 # MedianTwoSortedArrays - DONE
 # ReverseLetterOnly - DONE
@@ -30,27 +30,23 @@
 
 
 
-def solution(s):
-    left = 0
-    set_sub = set()
-    max_sub = 0
+def solution(k):
+    k.sort()
+    result = 0
     
+    if len(k) < 2:
+        return -1
     
-    for right in range (len(s)):
-        if s[right] not in set_sub:
-            set_sub.add(s[right])
-            max_sub = max(max_sub,right - left + 1)
-        else:
-            while s[right] in set_sub:
-                set_sub.remove(s[left])
-                left += 1
-    return max_sub
-            
+    for i in range (0, len(k),2):
+        result += k[i]
+        
+    return result
 
+# Input
+k = [1,4,3,2]
 
-# Test Case
-test_str = "abcbcbb"
-result = solution(test_str)
+# Output 
+result = solution(k)
 
-# Menampilkan Hasil
-print("Hasil : ", result)
+# Print result
+print("Hasil : ",result)
