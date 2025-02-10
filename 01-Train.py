@@ -7,8 +7,8 @@
 # 4Sum - DONE
 # IntToRoman - DONE
 # MedianTwoSortedArrays - DONE
-# ReverseLetterOnly - 
-# Turing2 - DONE
+# ReverseLetterOnly - DONE
+# Turing2 - 
 
 # AddLinkedList - DONE
 # LetterComboOfPhone - DONE
@@ -29,20 +29,30 @@
 # ZigZag - DONE
 
 
-def solution(nums1, nums2):
-    comb_nums = nums1 + nums2
-    comb_nums.sort()
+def solution(k):
+    list_k = list(k)
     
-    if len(comb_nums) % 2 == 1:
-        return comb_nums[len(comb_nums) // 2]
-    else:
-        var1 = comb_nums[len(comb_nums) // 2]
-        var2 = comb_nums[(len(comb_nums) // 2) - 1]
-        return (var1 + var2) / 2.0
+    left = 0
+    right = len(list_k) - 1
+    
+    while left < right:
+        if not list_k[left].isalpha():
+            left += 1
+        elif not list_k[right].isalpha():
+            right -= 1
+        else:
+            list_k[left], list_k[right] = list_k[right], list_k[left]
+            left += 1
+            right -= 1
+            
+    return "".join(list_k)
+    
 
-# Main Program
-nums1 = [1,3,4]
-nums2 = [2,5]
+# Input 
+k = "= Hello % World !?!"
 
-result = solution(nums1,nums2)
-print("Hasil : ",result)
+# Output
+result = solution(k)    
+
+# Print result
+print("Hasil : ", result)
