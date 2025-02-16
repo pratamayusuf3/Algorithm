@@ -11,10 +11,10 @@
 # Turing2 - DONE
 
 # AddLinkedList - DONE
-# LetterComboOfPhone - INPROGRESS
-# PalindromeNumber - 
+# LetterComboOfPhone - DONE
+# PalindromeNumber - DONE
 # RomanToInt - DONE
-# Turing3 - DONE
+# Turing3 - 
 
 # BalanceDigit - DONE
 # LongestComPrefix - DONE
@@ -29,59 +29,28 @@
 # ZigZag - DONE
 
 
-class ListNode:
-    def __init__(self, val=0, next=None):
-        self.val = val
-        self.next = next
+def solution(s):
+    # Peta karakter Romawi ke nilai Integer
+    roman_to_int = {'I':1, 'V':5, 'X':10, 'L':50, 'C':100, 'D':500, 'M':1000 }
+    result = 0
+    
+    for i in range (len(s)):
+        if i < len(s) - 1 and roman_to_int[s[i]] < roman_to_int[s[i+1]]:
+            result -= roman_to_int[s[i]]
+        else:
+            result += roman_to_int[s[i]]
+            
+    return result
 
 
-def addLinkedList(l1,l2):
-    dummy_head = ListNode(0)
-    tail = dummy_head
-    carry = 0
-    
-    while l1 is not None or l2 is not None or carry != 0:
-        digit1 = l1.val if l1 is not None else 0
-        digit2 = l2.val if l2 is not None else 0
-        
-        total = digit1 + digit2 + carry
-        new_digit = total % 10
-        carry = total // 10
-        
-        tail.next = ListNode(new_digit)
-        tail = tail.next
-        
-        l1 = l1.next if l1 is not None else None
-        l2 = l2.next if l2 is not None else None
-        
-    return dummy_head.next
 
 
-def printLinkedList(head):
-    current = head
-    while current is not None:
-        print(current.val, end=" -> ")
-        current = current.next
-    print("null")
 
+# Input 
+k = "MMDXLIX"
 
-if __name__ == "__main__":
-    print("Program Dimulai")
-    
-    # Membuat 2 linked list
-    l1 = ListNode(2)
-    l1.next = ListNode(4)
-    l1.next.next = ListNode(3)
-    
-    l2 = ListNode(5)
-    l2.next = ListNode(6)
-    l2.next.next = ListNode(4)
-    
-    # Menghitung hasil penjumlahan dua linked list
-    result = addLinkedList(l1,l2)
-    
-    # Mencetak Hasil
-    print("Hasil :")
-    printLinkedList(result)
-    
-    print("Program Selesai")
+# Fungsi Hasil
+result = solution(k)
+
+# Output Hasil
+print("Hasil : ",result)
